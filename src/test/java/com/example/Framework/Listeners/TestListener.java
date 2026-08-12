@@ -20,7 +20,7 @@ public class TestListener implements ITestListener {
             try {
                 BaseTest baseInstance = (BaseTest) result.getInstance();
                 WebDriver driver = baseInstance.getDriver();
-                //screen.captureScreenShot(driver, result.getName());
+                screen.captureScreenShot(driver, result.getName());
                 screen.captureScreenShotForAllure(driver);
             } catch (Exception e) {
                 e.printStackTrace();

@@ -15,15 +15,18 @@ public class BaseTest{
 
     @Parameters("browser")
     @BeforeMethod
-    public void setUp(String browser){
+    public void setUp(String browser) throws InterruptedException{
         boolean isHeadless = Boolean.parseBoolean(System.getProperty("headless", "false"));
         switch (browser) {
             case "chrome":
-                ChromeOptions chromeOptions = new ChromeOptions();
+                 ChromeOptions chromeOptions = new ChromeOptions();
+                if(isHeadless){               
                 chromeOptions.addArguments("--headless=new");
                 chromeOptions.addArguments("--disable-gpu");
                 chromeOptions.addArguments("--no-sandbox");
                 chromeOptions.addArguments("--disable-dev-shm-usage");
+                chromeOptions.addArguments("--window-size=1920,1080");
+                }
                 driver = new ChromeDriver(chromeOptions);
                 break;
 
@@ -42,15 +45,20 @@ public class BaseTest{
                     defaultOptions.addArguments("--disable-gpu");
                     defaultOptions.addArguments("--no-sandbox");
                     defaultOptions.addArguments("--disable-dev-shm-usage");
+                    defaultOptions.addArguments("--window-size=1920,1080");
                 }
                 driver = new ChromeDriver(defaultOptions);
                 break;
         }
         
-        driver.get(ConfigReader.getProperty("baseUrl"));       
+        driver.get(ConfigReader.getProperty("baseUrl")); 
         driver.manage().deleteAllCookies();
         driver.navigate().refresh();
-        driver.manage().window().maximize(); 
+        Thread.sleep(3000);
+        if (!isHeadless) {
+             driver.manage().window().maximize();
+            }
+       // driver.manage().window().maximize(); 
 
     }
 
