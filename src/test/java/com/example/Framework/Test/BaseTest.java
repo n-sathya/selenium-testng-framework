@@ -22,6 +22,8 @@ public class BaseTest{
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--headless=new");
                 chromeOptions.addArguments("--disable-gpu");
+                chromeOptions.addArguments("--no-sandbox");
+                chromeOptions.addArguments("--disable-dev-shm-usage");
                 driver = new ChromeDriver(chromeOptions);
                 break;
 
@@ -38,6 +40,8 @@ public class BaseTest{
                 if (isHeadless) {
                     defaultOptions.addArguments("--headless=new");
                     defaultOptions.addArguments("--disable-gpu");
+                    defaultOptions.addArguments("--no-sandbox");
+                    defaultOptions.addArguments("--disable-dev-shm-usage");
                 }
                 driver = new ChromeDriver(defaultOptions);
                 break;
