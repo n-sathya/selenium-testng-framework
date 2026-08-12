@@ -1,7 +1,9 @@
 package com.example.Framework.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
@@ -14,17 +16,30 @@ public class BaseTest{
     @Parameters("browser")
     @BeforeMethod
     public void setUp(String browser){
+        boolean isHeadless = Boolean.parseBoolean(System.getProperty("headless", "false"));
         switch (browser) {
             case "chrome":
-                driver = new ChromeDriver();
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--headless=new");
+                chromeOptions.addArguments("--disable-gpu");
+                driver = new ChromeDriver(chromeOptions);
                 break;
 
             case "firefox":
-                driver = new FirefoxDriver();
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                if (isHeadless) {
+                    firefoxOptions.addArguments("--headless");
+                }
+                driver = new FirefoxDriver(firefoxOptions);
                 break;
         
             default:
-                driver = new ChromeDriver();
+                ChromeOptions defaultOptions = new ChromeOptions();
+                if (isHeadless) {
+                    defaultOptions.addArguments("--headless=new");
+                    defaultOptions.addArguments("--disable-gpu");
+                }
+                driver = new ChromeDriver(defaultOptions);
                 break;
         }
         
