@@ -8,12 +8,12 @@ pipeline {
         }
         stage('Run Tests') {
             steps {
-                bat 'mvn clean test -Dheadless=true'
+                sh 'mvn clean test -Dheadless=true'
             }
         }
         stage('Generate Allure Report') {
             steps {
-                bat 'mvn allure:report'
+                sh 'mvn allure:report'
             }
         }
     }
