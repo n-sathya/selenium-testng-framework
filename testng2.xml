@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="GrouperSuite">
+ <test name="GrouperTest">
+ <groups>
+    <run>
+        <include name = ".*_v12"/>
+    </run>
+ </groups>
+     <classes>
+            <class name="com.example.Group_ClassA"/>
+            <class name="com.example.Group_ClassB"/>
+            
+    </classes>
+ </test>
+</suite>
