@@ -6,11 +6,18 @@
     <listener class-name = "com.example.Framework.Listeners.TransformAnnotation"/>
     <!-- <listener class-name="io.qameta.allure.testng.AllureTestNg"/> -->
 </listeners>
-<test name="Chrome">
+<test name="Chrome" enabled="false">
     <parameter name = "browser" value = "chrome"/>
     <classes>
         <!-- <class name="com.example.Framework.Test.RegisterationTest"/> -->
         <class name="com.example.Framework.Test.LoginTest"/>
+    </classes>
+</test>
+<test name="BDD">
+<!--    <parameter name = "browser" value = "chrome"/>-->
+    <classes>
+        <!-- <class name="com.example.Framework.Test.RegisterationTest"/> -->
+        <class name="com.example.Framework.Test.TestRunner"/>
     </classes>
 </test>
 
