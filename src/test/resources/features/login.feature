@@ -16,3 +16,10 @@ Feature: Login
     Examples:
     |username|password|
     |test_acc@testmail.com|testAccount@108|
+
+
+  @regression
+  Scenario: Failed login with invalid password
+    Given user is on the login page
+    When user enters "test_acc@testmail.com" and "wrongpassword"
+    Then login should fail
