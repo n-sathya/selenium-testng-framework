@@ -30,6 +30,7 @@ public class Hooks {
         driver.navigate().refresh();
         Thread.sleep(2000);
 
+
     }
 
     @After
